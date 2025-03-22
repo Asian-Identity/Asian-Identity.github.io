@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blindspot Graph - 見やすいグラフをカンタン作成！</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Noto Sans JP フォントの追加 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dodger-blue': {
+                            '50': '#eef9ff',
+                            '100': '#daf0ff',
+                            '200': '#bde6ff',
+                            '300': '#90d8ff',
+                            '400': '#5bc0ff',
+                            '500': '#35a3fc',
+                            '600': '#2789f2',
+                            '700': '#176dde',
+                            '800': '#1957b4',
+                            '900': '#1a4c8e',
+                            '950': '#152f56',
+                        },
+                    },
+                    fontFamily: {
+                        'sans': ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient {
+            background: linear-gradient(90deg, #2789f2 0%, #35a3fc 100%);
+        }
+        .hero-title {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            background: linear-gradient(135deg, #1957b4 0%, #2789f2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .section-title {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.4;
+        }
+        .section-description {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 400;
+            line-height: 1.8;
+            letter-spacing: 0.02em;
+        }
+        .nav-link {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+    </style>
+</head>
+<body class="bg-dodger-blue-50 font-sans">
+    <!-- ヘッダーナビゲーション -->
+    <nav class="bg-white shadow-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold text-dodger-blue-900 nav-link">Asian Identity</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="nav-link text-dodger-blue-600 hover:text-dodger-blue-700">特徴</a>
+                    <a href="#pricing" class="nav-link text-dodger-blue-600 hover:text-dodger-blue-700">料金プラン</a>
+                    <a href="#faq" class="nav-link text-dodger-blue-600 hover:text-dodger-blue-700">よくある質問</a>
+                    <a href="#" class="nav-link bg-dodger-blue-600 text-white px-4 py-2 rounded-lg hover:bg-dodger-blue-700">無料で始める</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-dodger-blue-600 hover:text-dodger-blue-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl font-extrabold mb-8">
+                    Blindspot Finderの<br>結果を見やすいグラフに
+                </h1>
+                <p class="section-description text-xl text-dodger-blue-700 max-w-3xl mx-auto mb-12">
+                    Blindspot Finderのアンケート回答データから、分かりやすいグラフを自動生成。<br>
+                    個人の結果を視覚的に理解し、効果的なフィードバックを実現します。
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#" class="nav-link gradient text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90">
+                        無料でグラフを作成
+                    </a>
+                    <a href="#features" class="nav-link bg-white text-dodger-blue-700 px-8 py-4 rounded-lg text-lg font-semibold border border-dodger-blue-200 hover:border-dodger-blue-300">
+                        機能を見る
+                    </a>
+                </div>
+            </div>
+            <div class="mt-16 grid md:grid-cols-3 gap-8">
+                <div class="flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000" alt="スキル評価グラフ" class="rounded-lg shadow-xl max-w-full h-auto hover:scale-105 transition-transform duration-300" style="max-height: 250px; object-fit: cover;">
+                </div>
+                <div class="flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000" alt="パフォーマンス分析グラフ" class="rounded-lg shadow-xl max-w-full h-auto hover:scale-105 transition-transform duration-300" style="max-height: 250px; object-fit: cover;">
+                </div>
+                <div class="flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=1000" alt="データ分析ダッシュボード" class="rounded-lg shadow-xl max-w-full h-auto hover:scale-105 transition-transform duration-300" style="max-height: 250px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴セクション -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-3xl font-bold text-dodger-blue-900 mb-4">主な特徴</h2>
+                <p class="section-description text-xl text-dodger-blue-700">Blindspotの結果を、より分かりやすく活用するための機能を提供します</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 rounded-lg bg-dodger-blue-50 hover:bg-dodger-blue-100 transition-colors duration-300">
+                    <div class="w-12 h-12 gradient rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-bolt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dodger-blue-900 mb-2">簡単データ変換</h3>
+                    <p class="text-dodger-blue-700">Blindspot Finderのデータを数クリックでグラフ化。面倒な作業は必要ありません。</p>
+                </div>
+                <div class="p-6 rounded-lg bg-dodger-blue-50 hover:bg-dodger-blue-100 transition-colors duration-300">
+                    <div class="w-12 h-12 gradient rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-pie text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dodger-blue-900 mb-2">多彩なグラフ</h3>
+                    <p class="text-dodger-blue-700">レーダーチャート、棒グラフなど、目的に応じて最適なグラフタイプを選択可能。</p>
+                </div>
+                <div class="p-6 rounded-lg bg-dodger-blue-50 hover:bg-dodger-blue-100 transition-colors duration-300">
+                    <div class="w-12 h-12 gradient rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-download text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dodger-blue-900 mb-2">簡単エクスポート</h3>
+                    <p class="text-dodger-blue-700">作成したグラフをPDFや画像形式で簡単にダウンロード。資料作成にも便利です。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 料金プランセクション -->
+    <section id="pricing" class="py-20 bg-dodger-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-dodger-blue-900 mb-4">料金プラン</h2>
+                <p class="text-xl text-dodger-blue-700">ニーズに合わせて最適なプランをお選びください</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-dodger-blue-200">
+                    <h3 class="text-xl font-semibold text-dodger-blue-900 mb-4">ベーシック</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-dodger-blue-600">¥0</span>
+                        <span class="text-dodger-blue-600">/月</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-dodger-blue-500 mr-2"></i>
+                            <span class="text-dodger-blue-700">基本的なグラフ作成</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-dodger-blue-500 mr-2"></i>
+                            <span class="text-dodger-blue-700">月5件までのグラフ作成</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-dodger-blue-500 mr-2"></i>
+                            <span class="text-dodger-blue-700">PNG形式でエクスポート</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block text-center bg-white text-dodger-blue-600 border border-dodger-blue-600 px-6 py-3 rounded-lg hover:bg-dodger-blue-50">
+                        無料で始める
+                    </a>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-lg border-2 border-dodger-blue-600 transform scale-105">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <span class="bg-dodger-blue-600 text-white px-4 py-1 rounded-full text-sm">人気</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dodger-blue-900 mb-4">プロフェッショナル</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-dodger-blue-600">¥2,980</span>
+                        <span class="text-dodger-blue-600">/月</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-dodger-blue-500 mr-2"></i>
+                            <span class="text-dodger-blue-700">ベーシックの全機能</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-dodger-blue-500 mr-2"></i>
+                            <span class="text-dodger-blue-700">無制限のグラフ作成</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-dodger-blue-500 mr-2"></i>
+                            <span class="text-dodger-blue-700">PDF・Excel形式でエクスポート</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block text-center gradient text-white px-6 py-3 rounded-lg hover:opacity-90">
+                        今すぐ始める
+                    </a>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-sm border border-dodger-blue-200">
+                    <h3 class="text-xl font-semibold text-dodger-blue-900 mb-4">エンタープライズ</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-dodger-blue-600">要相談</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-dodger-blue-500 mr-2"></i>
+                            <span class="text-dodger-blue-700">プロフェッショナルの全機能</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-dodger-blue-500 mr-2"></i>
+                            <span class="text-dodger-blue-700">API連携</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-dodger-blue-500 mr-2"></i>
+                            <span class="text-dodger-blue-700">カスタムデザイン対応</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block text-center bg-white text-dodger-blue-600 border border-dodger-blue-600 px-6 py-3 rounded-lg hover:bg-dodger-blue-50">
+                        お問い合わせ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- よくある質問セクション -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-dodger-blue-900 mb-4">よくある質問</h2>
+                <p class="text-xl text-dodger-blue-700">お客様からよくいただく質問をまとめました</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-dodger-blue-50 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold text-dodger-blue-900 mb-2">どのようなデータ形式に対応していますか？</h3>
+                    <p class="text-dodger-blue-700">Blindspot Finderから出力される標準的なCSVファイルに対応しています。特別な加工は必要ありません。</p>
+                </div>
+                <div class="bg-dodger-blue-50 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold text-dodger-blue-900 mb-2">作成したグラフの編集は可能ですか？</h3>
+                    <p class="text-dodger-blue-700">はい、色やフォント、サイズなど、グラフの見た目をカスタマイズすることができます。</p>
+                </div>
+                <div class="bg-dodger-blue-50 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold text-dodger-blue-900 mb-2">データの安全性は確保されていますか？</h3>
+                    <p class="text-dodger-blue-700">はい、アップロードされたデータは暗号化して保存され、グラフ作成後は自動的に削除されます。</p>
+                </div>
+                <div class="bg-dodger-blue-50 p-6 rounded-lg">
+                    <h3 class="text-lg font-semibold text-dodger-blue-900 mb-2">対応しているブラウザを教えてください</h3>
+                    <p class="text-dodger-blue-700">Chrome、Firefox、Safari、Edgeの最新版に対応しています。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせフォーム -->
+    <section id="contact" class="py-20 bg-dodger-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-dodger-blue-900 mb-4">お問い合わせ</h2>
+                <p class="text-xl text-dodger-blue-700">ご質問やご要望がございましたら、以下のフォームからお気軽にお問い合わせください</p>
+            </div>
+            <div class="flex justify-center">
+                <div class="w-full max-w-4xl bg-white p-8 rounded-lg shadow-sm">
+                    <form id="contactForm" 
+                          action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSfbzptXvU83IfoBAf4DpJlkCCdoO39XkWMnbtd5TP9krpgIdg/formResponse" 
+                          method="POST" 
+                          class="space-y-6">
+                        <div id="formContent">
+                            <div>
+                                <label for="entry.931014608" class="block text-lg font-medium text-dodger-blue-900 mb-2">お名前</label>
+                                <input type="text" 
+                                       id="entry.931014608" 
+                                       name="entry.931014608" 
+                                       required
+                                       class="w-full px-4 py-3 rounded-lg border border-dodger-blue-200 focus:border-dodger-blue-500 focus:ring-2 focus:ring-dodger-blue-200 outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label for="entry.237303215" class="block text-lg font-medium text-dodger-blue-900 mb-2">会社名</label>
+                                <input type="text" 
+                                       id="entry.237303215" 
+                                       name="entry.237303215" 
+                                       required
+                                       class="w-full px-4 py-3 rounded-lg border border-dodger-blue-200 focus:border-dodger-blue-500 focus:ring-2 focus:ring-dodger-blue-200 outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label for="entry.1579929514" class="block text-lg font-medium text-dodger-blue-900 mb-2">質問内容</label>
+                                <textarea id="entry.1579929514" 
+                                          name="entry.1579929514" 
+                                          required
+                                          rows="5"
+                                          class="w-full px-4 py-3 rounded-lg border border-dodger-blue-200 focus:border-dodger-blue-500 focus:ring-2 focus:ring-dodger-blue-200 outline-none transition-colors"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" 
+                                        id="submitButton"
+                                        class="gradient text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity">
+                                    送信する
+                                </button>
+                            </div>
+                        </div>
+                        <!-- ローディング表示 -->
+                        <div id="loadingState" class="hidden text-center py-12">
+                            <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-dodger-blue-500 border-t-transparent"></div>
+                            <p class="mt-4 text-lg text-dodger-blue-700">送信中...</p>
+                        </div>
+                        <!-- 完了メッセージ -->
+                        <div id="successMessage" class="hidden text-center py-12">
+                            <div class="mb-4">
+                                <div class="mx-auto h-16 w-16 rounded-full bg-green-100 flex items-center justify-center">
+                                    <i class="fas fa-check text-2xl text-green-500"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-dodger-blue-900 mb-4">お問い合わせありがとうございます</h3>
+                            <p class="text-lg text-dodger-blue-700 mb-8">内容を確認次第、担当者よりご連絡させていただきます。</p>
+                            <button type="button" 
+                                    onclick="resetForm()"
+                                    class="gradient text-white px-6 py-3 rounded-lg text-base font-semibold hover:opacity-90 transition-opacity">
+                                フォームに戻る
+                            </button>
+                        </div>
+                        <input type="hidden" name="fvv" value="1">
+                        <input type="hidden" name="fbzx" value="-6424569744064151941">
+                        <input type="hidden" name="pageHistory" value="0">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // フォームの内容を非表示にしてローディングを表示
+            document.getElementById('formContent').classList.add('hidden');
+            document.getElementById('loadingState').classList.remove('hidden');
+            
+            // フォームデータの準備
+            const formData = new FormData(this);
+            
+            try {
+                // Google FormsにPOSTリクエストを送信
+                await fetch(this.action, {
+                    method: 'POST',
+                    mode: 'no-cors', // Google Formsは異なるオリジンからのリクエストを許可しないため
+                    body: formData
+                });
+                
+                // ローディングを非表示にして完了メッセージを表示
+                document.getElementById('loadingState').classList.add('hidden');
+                document.getElementById('successMessage').classList.remove('hidden');
+                
+            } catch (error) {
+                console.error('送信エラー:', error);
+                alert('送信に失敗しました。時間をおいて再度お試しください。');
+                
+                // エラー時はフォームを再表示
+                document.getElementById('loadingState').classList.add('hidden');
+                document.getElementById('formContent').classList.remove('hidden');
+            }
+        });
+
+        function resetForm() {
+            // フォームをリセット
+            document.getElementById('contactForm').reset();
+            
+            // 完了メッセージを非表示にしてフォームを再表示
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('formContent').classList.remove('hidden');
+        }
+    </script>
+
+    <!-- CTAセクション -->
+    <section class="py-20 gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="section-title text-3xl font-bold text-white mb-8">Blindspot Finderの結果を分かりやすく可視化</h2>
+            <p class="section-description text-xl text-white/90 mb-12 max-w-3xl mx-auto">
+                面倒なグラフ作成作業から解放されて、本質的なフィードバックに集中できます。<br>
+                今すぐ無料でお試しください。
+            </p>
+            <a href="#" class="nav-link inline-block bg-white text-dodger-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-dodger-blue-50">
+                無料で始める
+            </a>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-dodger-blue-950 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Blindspot Graph</h4>
+                    <p class="text-dodger-blue-200">Blindspot Finderのデータを見やすいグラフに変換するサービス</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">サービス</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="text-dodger-blue-200 hover:text-white">特徴</a></li>
+                        <li><a href="#pricing" class="text-dodger-blue-200 hover:text-white">料金プラン</a></li>
+                        <li><a href="#faq" class="text-dodger-blue-200 hover:text-white">よくある質問</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">会社情報</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-dodger-blue-200 hover:text-white">会社概要</a></li>
+                        <li><a href="#" class="text-dodger-blue-200 hover:text-white">プライバシーポリシー</a></li>
+                        <li><a href="#" class="text-dodger-blue-200 hover:text-white">利用規約</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">お問い合わせ</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-dodger-blue-200 hover:text-white">サポート</a></li>
+                        <li><a href="#" class="text-dodger-blue-200 hover:text-white">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-dodger-blue-900 text-center">
+                <p class="text-dodger-blue-200">&copy; 2024 Blindspot Graph. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
