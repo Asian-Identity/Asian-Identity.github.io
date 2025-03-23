@@ -59,9 +59,11 @@
         }
         .logo-container {
             position: relative;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             padding: 0.5rem 1rem;
             z-index: 1;
+            gap: 0.75rem;
         }
         .logo-container::before {
             content: '';
@@ -77,6 +79,27 @@
         }
         .logo-container:hover::before {
             background: linear-gradient(135deg, rgba(25, 87, 180, 0.15) 0%, rgba(53, 163, 252, 0.15) 100%);
+        }
+        .logo-egg {
+            width: 2rem;
+            height: 2rem;
+            background-image: url('https://www.asian-identity.com/images/common/logo.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .thai-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                #2789f2 0%, #35a3fc 25%, 
+                #ffffff 25%, #ffffff 50%, 
+                #2789f2 50%, #35a3fc 75%,
+                #ffffff 75%, #ffffff 100%);
+            background-size: 2rem 100%;
         }
         .section-title {
             font-family: 'Noto Sans JP', sans-serif;
@@ -104,6 +127,7 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <div class="logo-container">
+                        <div class="logo-egg"></div>
                         <a href="#" class="text-xl font-bold text-dodger-blue-900 nav-link">Asian Identity</a>
                     </div>
                 </div>
